@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation </title>
+    <style>
+        .highlight {
+            color: white;
+            background-color: blue;
+            padding: 5px;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="main-title">DOM Manipulation Example</h1>
+    <p class="description">This is an example of DOM manipulation using JavaScript.</p>
+    <a id="link" href="https://www.example.com">Go to Example.com</a>
+    <ul id="list">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+    </ul>
+    <button id="change-text">Change Text</button>
+    <button id="toggle-class">Toggle Highlight</button>
+    <button id="add-item">Add Item</button>
+    <button id="remove-item">Remove Last Item</button>
+    <button id="show-hide">Show/Hide Link</button>
+
+    <script>
+        // Selecting Elements
+        const title = document.getElementById('main-title');
+        const description = document.querySelector('.description');
+        const link = document.getElementById('link');
+        const list = document.getElementById('list');
+
+
+
+        // Changing Content
+        title.textContent = "Updated DOM Manipulation Example";
+
+        // Changing Attributes
+        link.setAttribute('href', 'https://www.google.com');
+
+
+
+
+        // Changing Styles
+        description.style.color = 'green';
+        description.style.fontSize = '18px';
+
+
+        ////
+
+
+        // Adding and Removing Elements
+        const addItemButton = document.getElementById('add-item');
+        addItemButton.addEventListener('click', () => {
+            const newItem = document.createElement('li');
+            newItem.textContent = `Item ${list.children.length + 1}`;
+            list.appendChild(newItem);
+        });
+
+
+        ////
+
+        const removeItemButton = document.getElementById('remove-item');
+        removeItemButton.addEventListener('click', () => {
+            if (list.children.length > 0) {
+                list.lastElementChild.remove();
+            }
+        });
+
+
+        ///
+
+
+        // Event Handling
+        const changeTextButton = document.getElementById('change-text');
+        changeTextButton.addEventListener('click', () => {
+            title.textContent = "Text has been changed!";
+        });
+
+
+
+        ////
+
+        const toggleClassButton = document.getElementById('toggle-class');
+        toggleClassButton.addEventListener('click', () => {
+            description.classList.toggle('highlight');
+        });
+
+
+        ///
+
+
+        const showHideButton = document.getElementById('show-hide');
+        showHideButton.addEventListener('click', () => {
+            link.classList.toggle('hidden');
+        });
+
+
+        /////
+
+        // Traversing the DOM
+        const firstListItem = list.firstElementChild;
+        console.log('First List Item:', firstListItem.textContent);
+
+        ///
+
+
+        const parentOfList = list.parentElement;
+        console.log('Parent of List:', parentOfList.tagName);
+        /////
+        
+
+        const nextSibling = firstListItem.nextElementSibling;
+        console.log('Next Sibling of First Item:', nextSibling.textContent);
+    </script>
+</body>
+</html>
